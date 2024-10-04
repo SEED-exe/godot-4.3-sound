@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3j6dfm1smckk"]
+
+[ext_resource type="AudioStream" uid="uid://ceeild01xpmgn" path="res://assets/audio/layer_0.ogg" id="1_cwj7s"]
+[ext_resource type="AudioStream" uid="uid://bbq425x1fe808" path="res://assets/audio/layer_1.ogg" id="2_sfxe7"]
+[ext_resource type="AudioStream" uid="uid://jd4j8eireuhj" path="res://assets/audio/layer_2.ogg" id="3_2qtq6"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="4_i5oh2"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_tv50v"]
+stream_count = 3
+stream_0/stream = ExtResource("1_cwj7s")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("2_sfxe7")
+stream_1/volume = -60.0
+stream_2/stream = ExtResource("3_2qtq6")
+stream_2/volume = -60.0
+
+[node name="world" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamSynchronized_tv50v")
+volume_db = -25.0
+
+[node name="ui" type="CanvasLayer" parent="."]
+script = ExtResource("4_i5oh2")
+
+[node name="bg" type="ColorRect" parent="ui"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 264.0
+offset_top = 78.0
+offset_right = -264.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.258824)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui/bg/VBoxContainer"]
+layout_mode = 2
+
+[node name="CheckButto_l0" type="CheckButton" parent="ui/bg/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "LAYER 0"
+
+[node name="CheckButto_l1" type="CheckButton" parent="ui/bg/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "LAYER 0"
+
+[node name="CheckButto_l2" type="CheckButton" parent="ui/bg/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "LAYER 0"
+
+[node name="CheckButto_playe" type="CheckButton" parent="ui/bg/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Playe music"
+
+[connection signal="toggled" from="ui/bg/VBoxContainer/HBoxContainer/CheckButto_l0" to="ui" method="_on_check_butto_l_0_toggled"]
+[connection signal="toggled" from="ui/bg/VBoxContainer/HBoxContainer/CheckButto_l1" to="ui" method="_on_check_butto_l_1_toggled"]
+[connection signal="toggled" from="ui/bg/VBoxContainer/HBoxContainer/CheckButto_l2" to="ui" method="_on_check_butto_l_2_toggled"]
+[connection signal="toggled" from="ui/bg/VBoxContainer/HBoxContainer/CheckButto_playe" to="ui" method="_on_check_butto_playe_toggled"]
